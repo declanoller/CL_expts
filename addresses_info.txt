@@ -1,0 +1,3 @@
+sender_email	rogernobbles58@gmail.com
+sender_password	aaaaaa99
+recipient_email	declanoller@gmail.com
