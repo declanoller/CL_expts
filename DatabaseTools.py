@@ -10,7 +10,7 @@ class DatabaseTools:
 
     def __init__(self,debug_file):
 
-        self.debugfile = debugfile
+        self.debug_file = debug_file
 
         self.csv_fname = 'DB_CL.csv'
         self.backup_dir = 'db_backups'
@@ -55,7 +55,7 @@ class DatabaseTools:
 
 
 
-    def addToDatabase(self,post,email_id,percent_offered,price_offered,msg_type):
+    def addToDatabase(self,post,email_id,percent_offered,price_offered,msg_type,location):
 
         self.readCSV()
 
@@ -73,14 +73,14 @@ class DatabaseTools:
         'replied' : [0],
         'date_cntctd' : [self.getDateTimeStr()],
         'date_rplied' : [np.nan],
-        'location' : [np.nan],
+        'location' : [location],
         'msg_type' : [msg_type],
         'available' : [np.nan]
         })
 
         self.df = self.df.append(add_df,ignore_index=True)
         self.debug_file.writeToDebug('adding to df and writing to file')
-        print('adding to df and writing to file')
+        #print('adding to df and writing to file')
         #print(self.df.head())
         self.writeCSV()
 

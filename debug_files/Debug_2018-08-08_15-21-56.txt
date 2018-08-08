@@ -1,0 +1,185 @@
+Run notes: providence test
+
+
+[15:21:56   2018-08-08]	No pandas csv file, creating one.
+[15:21:56   2018-08-08]	starting email server on port 587 and logging in...
+[15:21:56   2018-08-08]	successful!
+[15:21:56   2018-08-08]	Starting FF webdriver
+[15:22:08   2018-08-08]	getting posts for providence:
+https://providence.craigslist.org/fuo/d/couch-chair-and-ottoman/6665681385.html
+https://providence.craigslist.org/msg/d/jaguar-bass/6665681388.html
+https://providence.craigslist.org/for/d/gottlieb-pop-card-pinball/6665678775.html
+https://providence.craigslist.org/for/d/rc-car/6665677981.html
+https://providence.craigslist.org/bar/d/wheels-and-tires-camaro/6665589424.html
+https://providence.craigslist.org/for/d/fish-tank-stand-use-forgal/6665677026.html
+https://providence.craigslist.org/app/d/kenmore-elite-electric-dryer/6665467133.html
+https://providence.craigslist.org/ele/d/texas-instruments-ti-84-plus/6643665918.html
+https://providence.craigslist.org/hab/d/commode-drop-arm-type-by/6665676469.html
+https://providence.craigslist.org/bpo/d/humminbird-100-sx-fish-finder/6650781411.html
+https://providence.craigslist.org/for/d/welbilt-bread-maker-new/6652734100.html
+https://providence.craigslist.org/tag/d/brand-new-dragonball-monopoly/6661754526.html
+https://providence.craigslist.org/spo/d/ccm-hockey-skates-brand-new/6652733971.html
+https://providence.craigslist.org/clt/d/michelob-light-sign/6665675066.html
+https://providence.craigslist.org/fuo/d/mid-century-1954-bedroom-suite/6665674879.html
+https://providence.craigslist.org/msg/d/danelectro-12-string-guitar/6665674694.html
+https://providence.craigslist.org/spo/d/caldwell-matrix-shooting-rest/6656543345.html
+https://providence.craigslist.org/fuo/d/brand-new-full-size-bed-frame/6665615317.html
+https://providence.craigslist.org/clo/d/mens-boots/6665674107.html
+https://providence.craigslist.org/bpo/d/ancor-marine-grade-tinned/6665674013.html
+https://providence.craigslist.org/ele/d/sylvania-hdtv-with-remote/6665659991.html
+https://providence.craigslist.org/clo/d/very-nice-goodyear-racing/6656391264.html
+https://providence.craigslist.org/hsh/d/lamps/6665672868.html
+https://providence.craigslist.org/for/d/deep-action-power-cleanser/6665649606.html
+https://providence.craigslist.org/clt/d/bud-light-sign/6665671760.html
+https://providence.craigslist.org/mob/d/samsung-curved-tv/6665669804.html
+https://providence.craigslist.org/jwl/d/dolcegabbana-sun-glasses/6665669295.html
+https://providence.craigslist.org/cto/d/2002-white-chevy-express-for/6665669125.html
+https://providence.craigslist.org/clt/d/proof-state-quarters/6649231793.html
+https://providence.craigslist.org/clt/d/glass-paper-weight/6662712419.html
+https://providence.craigslist.org/msg/d/shure-vocal-master-pa-system/6665668309.html
+https://providence.craigslist.org/clt/d/glass-paper-weight/6662710525.html
+https://providence.craigslist.org/clt/d/glass-paper-weights/6662707314.html
+https://providence.craigslist.org/clo/d/12-pr-mens-blue-jeans/6665667778.html
+https://providence.craigslist.org/for/d/frame-sidewalk-sign/6665667695.html
+https://providence.craigslist.org/hab/d/probasics-bathtub-transfer/6665667612.html
+https://providence.craigslist.org/sgd/d/striker-foosball-brand-new/6665672300.html
+https://providence.craigslist.org/for/d/drum-head-bounty-for-drum-set/6651470106.html
+https://providence.craigslist.org/for/d/yamaha-double-bass-pedal-for/6639753091.html
+https://providence.craigslist.org/atq/d/pewter-plates/6665666313.html
+https://providence.craigslist.org/for/d/full-set-vintage-1985-tama/6642551096.html
+https://providence.craigslist.org/wto/d/used-tires-mount-and-balance/6654697042.html
+https://providence.craigslist.org/wto/d/used-tires-mount-and-balance/6647403380.html
+https://providence.craigslist.org/grd/d/fair-banks-grain-scale/6652177634.html
+https://providence.craigslist.org/emd/d/rpm-records-from-the-60s/6660026256.html
+https://providence.craigslist.org/ctd/d/2014-nissan-altima-25/6665670290.html
+https://providence.craigslist.org/gms/d/bikes-bikes-bikes/6639060125.html
+https://providence.craigslist.org/for/d/cricket-cage/6653265575.html
+https://providence.craigslist.org/grd/d/good-year-g296-msa-42565r225/6665665331.html
+https://providence.craigslist.org/spo/d/compound-bow/6665665019.html
+https://providence.craigslist.org/for/d/krups-beertender-dispenser/6665664844.html
+https://providence.craigslist.org/fuo/d/haywood-wakefield-dine-set/6652578271.html
+https://providence.craigslist.org/clo/d/lacrosse-rubber-boots-size-8/6656331707.html
+https://providence.craigslist.org/wto/d/used-tires-mount-and-balance/6647401725.html
+https://providence.craigslist.org/jwl/d/israeli-modernist-pin/6652602717.html
+https://providence.craigslist.org/wto/d/used-tires-mount-and-balance/6655677056.html
+https://providence.craigslist.org/ctd/d/2011-lexus-rx-350-base-awd/6665667626.html
+https://providence.craigslist.org/wto/6640574081.html
+https://providence.craigslist.org/app/d/12v-auto-rv-boat-wet-dry/6665662524.html
+https://providence.craigslist.org/wto/d/set-new-860/6641473982.html
+https://providence.craigslist.org/for/d/mobile-aneroid/6644985999.html
+https://providence.craigslist.org/spo/d/aqua-lung-pearl-scuba-bcd/6646662025.html
+https://providence.craigslist.org/spo/d/waterproof-w2-7mm-back-zip/6642356795.html
+https://providence.craigslist.org/for/d/dive-tank-aluminum-80cf/6642382558.html
+https://providence.craigslist.org/wto/d/truck-tires-new-11r245-mobile/6645669035.html
+https://providence.craigslist.org/wto/d/installed/6645768837.html
+https://providence.craigslist.org/msg/d/metrophones-isolation/6647570676.html
+https://providence.craigslist.org/wto/d/truck-tires-new-11r245-mobile/6640572274.html
+https://providence.craigslist.org/wto/d/used-tires-mount-and-balance/6654711352.html
+https://providence.craigslist.org/cto/d/2006-honda-civic/6663066403.html
+https://providence.craigslist.org/wto/d/ltmudders-brand-new-set/6645624510.html
+https://providence.craigslist.org/wto/6655784760.html
+https://providence.craigslist.org/jwl/d/new-tie-tacs-in-clamshell/6639057262.html
+https://providence.craigslist.org/wto/d/truck-tires-new-11r245-mobile/6647604653.html
+https://providence.craigslist.org/wto/d/truck-tires-new-11r245-mobile/6648347847.html
+https://providence.craigslist.org/hab/d/dmi-ambulation-gait-belt-new/6665659383.html
+https://providence.craigslist.org/clo/d/michael-kors-purse/6665657786.html
+https://providence.craigslist.org/wto/d/we-install/6647598403.html
+https://providence.craigslist.org/tag/d/disney-kids-toys/6654785668.html
+https://providence.craigslist.org/pts/d/24hr-mobile-truck-tire-service/6647572192.html
+https://providence.craigslist.org/clt/d/national-collectors-mint/6654790104.html
+https://providence.craigslist.org/for/d/johnson-rotary-laser-kit/6654783801.html
+https://providence.craigslist.org/for/d/over-the-range-microwaves/6654781823.html
+https://providence.craigslist.org/wto/6654695858.html
+https://providence.craigslist.org/for/d/new-ikea-fillsta-pendant-lamps/6654778969.html
+https://providence.craigslist.org/wto/d/20-rims-with-tires-set/6646444788.html
+https://providence.craigslist.org/for/d/snack-platter/6654770060.html
+https://providence.craigslist.org/wto/d/used-tires-mount-and-balance/6659511714.html
+https://providence.craigslist.org/for/d/dirt-bike/6654766762.html
+https://providence.craigslist.org/wto/d/new-set-520-we-install/6643162956.html
+https://providence.craigslist.org/for/d/comfort-aire-heat-controller/6665657915.html
+https://providence.craigslist.org/wto/d/installed/6647402718.html
+https://providence.craigslist.org/atq/d/milk-caps/6665635030.html
+https://providence.craigslist.org/clo/d/2-christian-louboutin-high/6649858584.html
+https://providence.craigslist.org/for/d/heavy-duty-folding-ramp-for/6665657543.html
+https://providence.craigslist.org/bab/d/chicco-travel-system/6641921846.html
+https://providence.craigslist.org/for/d/comfort-aire-csa-series-coil/6665656786.html
+https://providence.craigslist.org/for/d/antique-circa-1919-hobart/6665656444.html
+https://providence.craigslist.org/for/d/55-gallon-fish-tank-with-stand/6648603263.html
+https://providence.craigslist.org/tls/d/ryobi-brushless-impact-driver/6643139792.html
+https://providence.craigslist.org/fuo/d/kitchen-table/6665655867.html
+https://providence.craigslist.org/tls/d/ryobi-battery-and-charger-kit/6639495691.html
+https://providence.craigslist.org/for/d/kohler-bancroft-30-biscuit/6665655329.html
+https://providence.craigslist.org/app/d/new-open-box-whirlpool-07-cu/6665654706.html
+https://providence.craigslist.org/hsh/d/pottery-barn-moran-ledge-with/6665652819.html
+https://providence.craigslist.org/bop/d/shimano-front-derailleur/6665650905.html
+https://providence.craigslist.org/bab/d/leap-frog-learning-band-walker/6652594988.html
+https://providence.craigslist.org/for/d/white-diamonds-perfume-33fl/6660873003.html
+https://providence.craigslist.org/grd/d/clean-dry-firewood/6661845240.html
+https://providence.craigslist.org/grd/d/clean-outdoor-firewood/6661844873.html
+https://providence.craigslist.org/clo/d/lot-of-12-womens-sizeshoes/6662698884.html
+https://providence.craigslist.org/clt/d/glass-paper-weight/6662702310.html
+https://providence.craigslist.org/grd/d/meat-rabbits-12-weeks-old/6660808074.html
+https://providence.craigslist.org/for/d/generac-xt-8000e-portable/6665648035.html
+https://providence.craigslist.org/for/d/twin-headboard-new-in-box/6665647307.html
+https://providence.craigslist.org/clt/d/peyton-manning-collectibles/6665647237.html
+https://providence.craigslist.org/clt/d/lot-of-5-glass-paper-weights/6663353837.html
+https://providence.craigslist.org/fuo/d/crate-and-barrel-slipcover/6665647006.html
+https://providence.craigslist.org/grd/d/honda-push-mower-for-parts-or/6665646664.html
+https://providence.craigslist.org/fuo/d/black-nightstand-with/6658977637.html
+[15:22:08   2018-08-08]	percents used: [0.6, 0.8, 1.0]
+[15:22:15   2018-08-08]	post items:
+[15:22:15   2018-08-08]	dict_items([('page', 'https://providence.craigslist.org/fuo/d/couch-chair-and-ottoman/6665681385.html'), ('reply_methods', '✉'), ('title', 'Couch, chair and ottoman'), ('price', 200), ('id', 6665681385), ('post_date', 'posted: 12 minutes ago'), ('post_update', None), ('email', 'rjrh7-6665681385@sale.craigslist.org')])
+
+[15:22:15   2018-08-08]	offering 60.0 percent, which is rounded to $120
+
+[15:22:15   2018-08-08]	Message type: polite
+[15:22:15   2018-08-08]	email to be sent:
+Subject: Couch, chair and ottoman
+From: rogernobbles58@gmail.com
+To: rjrh7-6665681385@sale.craigslist.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+In-Reply-To: <153375613594.5049.12459552820244854264@TITTYWHISKERS88>
+References: <153375613594.5049.12459552820244854264@TITTYWHISKERS88>
+
+Hi,
+I'm very interested in buying this, but could you maybe lower the price to $120? If you could, I could possibly buy today.
+Thanks,
+Roger
+
+https://providence.craigslist.org/fuo/d/couch-chair-and-ottoman/6665681385.html
+
+
+
+[15:22:15   2018-08-08]	sending email
+
+[15:22:16   2018-08-08]	adding to df and writing to file
+[15:22:24   2018-08-08]	post items:
+[15:22:24   2018-08-08]	dict_items([('page', 'https://providence.craigslist.org/msg/d/jaguar-bass/6665681388.html'), ('reply_methods', '✉'), ('title', 'Jaguar Bass'), ('price', 200), ('id', 6665681388), ('post_date', 'posted: 12 minutes ago'), ('post_update', None), ('email', 'wt4nq-6665681388@sale.craigslist.org')])
+
+[15:22:24   2018-08-08]	offering 80.0 percent, which is rounded to $160
+
+[15:22:24   2018-08-08]	Message type: polite
+[15:22:24   2018-08-08]	email to be sent:
+Subject: Jaguar Bass
+From: rogernobbles58@gmail.com
+To: wt4nq-6665681388@sale.craigslist.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+In-Reply-To: <153375614422.5049.16835957044485977346@TITTYWHISKERS88>
+References: <153375614422.5049.16835957044485977346@TITTYWHISKERS88>
+
+Hi,
+I'm very interested in buying this, but could you maybe lower the price to $160? If you could, I could possibly buy today.
+Thanks,
+Roger
+
+https://providence.craigslist.org/msg/d/jaguar-bass/6665681388.html
+
+
+
+[15:22:24   2018-08-08]	sending email
+
+[15:22:24   2018-08-08]	adding to df and writing to file

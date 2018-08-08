@@ -17,12 +17,14 @@ class EmailTools:
                 self.info[key] = val
                 #print(key,': ',val)
 
-        '''self.port = 587
+        self.port = 587
         print('starting email server and logging in...')
+        self.debug_file.writeToDebug('starting email server on port {} and logging in...'.format(self.port))
         self.server = smtplib.SMTP('smtp.gmail.com', self.port)
         self.server.starttls()
         self.server.login(self.info['sender_email'], self.info['sender_password'])
-        print('done')'''
+        self.debug_file.writeToDebug('successful!')
+        print('done')
 
 
     def getUnreadEmails(self):
@@ -49,18 +51,11 @@ class EmailTools:
 
         msg = self.createEmailMessage(post, price_offered, msg_type)
 
-        self.debug_file.writeToDebug('\nemail to be sent:')
-        self.debug_file.writeToDebug(msg.as_string())
+        self.debug_file.writeToDebug('email to be sent:\n' + msg.as_string() + '\n\n')
 
-        '''print('\nemail to be sent:')
-        print(msg.as_string())'''
-
-        print('\npretend sending email!')
-
-        return(msg['In-Reply-To'])
-
-        self.debug_file.writeToDebug('sending email')
+        self.debug_file.writeToDebug('sending email\n')
         self.server.send_message(msg)
+        return(msg['In-Reply-To'])
 
 
     def createEmailMessage(self, post, price_offered, msg_type):
@@ -82,6 +77,7 @@ class EmailTools:
         msg['Subject'] = post.title
         msg['From'] = self.info['sender_email']
         msg['To'] = post.email
+        #msg['To'] = self.info['recipient_email']
 
         msg.set_content(content_filled)
 
@@ -99,7 +95,7 @@ class EmailTools:
 
     def __del__(self):
         if self.server is not None:
-            self.debug_file.writeToDebug('quitting smtp email server via ET __del__')
+            #self.debug_file.writeToDebug('quitting smtp email server via ET __del__')
             print('quitting smtp email server via ET __del__')
             self.server.quit()
 

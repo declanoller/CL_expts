@@ -17,36 +17,51 @@ class BidderSystem:
 
 
 
-    def processBatch(self,city):
+    def processBatch(self,location):
 
-        #Get posts for city
-        print('getting posts for',city)
-        city_posts = self.st.getCitySales('providence')[:3]
-        print(city_posts)
+        #Get posts for location
+        print('\n\ngetting posts for',location)
+        location_posts = self.st.getLocationPosts(location)
+        print('doing this many posts:', len(location_posts))
+
+        self.df.writeToDebug('getting posts for ' + location + ':\n' + '\n'.join(location_posts))
 
         percents = [.6,.8,1.0]
+        self.df.writeToDebug('percents used: {}'.format(percents))
 
         #For each post:
-        for i,post in enumerate(city_posts):
+        for i,post in enumerate(location_posts):
             #scrape page, get info
 
             page_info = self.st.getPageInfo(post)
-            page_info.printAll()
+            print()
+            print(page_info.title)
+            print(page_info.price)
 
-            percent_offered = percents[i%len(percents)]
-            price_offered = self.st.getRoundPrice(page_info.price,percent_offered)
+            if page_info.email is not None:
 
-            print('\n\noffering {} percent, which is rounded to ${}\n'.format(100*percent_offered,price_offered))
+                self.df.writeToDebug('post items:')
+                self.df.writeToDebug('{}\n'.format(page_info.getPostItems()))
+                percent_offered = percents[i%len(percents)]
+                price_offered = self.st.getRoundPrice(page_info.price,percent_offered)
 
-            if abs(percent_offered - 1.0)<.01:
-                msg_type = 'available'
+                print('offering {} percent, which is rounded to ${}\n\n'.format(100*percent_offered,price_offered))
+
+                self.df.writeToDebug('offering {} percent, which is rounded to ${}\n'.format(100*percent_offered,price_offered))
+
+                if abs(percent_offered - 1.0)<.01:
+                    msg_type = 'available'
+                else:
+                    msg_type = 'polite'
+
+                self.df.writeToDebug('Message type: ' + msg_type)
+                email_id = self.et.sendEmailOffer(page_info, price_offered,msg_type)
+
+                self.db.addToDatabase(page_info,email_id,percent_offered,price_offered,msg_type,location)
+
             else:
-                msg_type = 'polite'
-
-            email_id = self.et.sendEmailOffer(page_info, price_offered,msg_type)
-
-            self.db.addToDatabase(page_info,email_id,percent_offered,price_offered,msg_type)
-
+                print('no valid email address, skipping')
+                continue
 
 
 

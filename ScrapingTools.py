@@ -16,22 +16,22 @@ class ScrapingTools:
 
         post = Post(page)
 
-        post.reply_methods = self.br.find_element_by_class_name('envelope').text
+        try:
+            post.reply_methods = self.br.find_element_by_class_name('envelope').text
+            post.email = self.getReplyEmailAddress()
+        except:
+            self.debug_file.writeToDebug('No email contact, setting to None.')
+            post.reply_methods = None
+            post.email = None
+
         post.title = self.br.find_element_by_id('titletextonly').text
         post.price = int((self.br.find_element_by_class_name('price').text).replace('$',''))
         post_info = self.br.find_elements_by_class_name('postinginfo')
 
-        post.id = [piece.text for piece in post_info if 'post id' in piece.text]
-        if len(post.id)>0:
-            post.id = post.id[0]
-        else:
-            post.id = None
+        post.id = [piece.text for piece in post_info if 'post id' in piece.text][0]
+        post.id = int(post.id.split()[-1])
 
-        post.post_date = [piece.text for piece in post_info if 'posted' in piece.text]
-        if len(post.post_date)>0:
-            post.post_date = post.post_date[0]
-        else:
-            post.post_date = None
+        post.post_date = [piece.text for piece in post_info if 'posted' in piece.text][0]
 
         post.post_update = [piece.text for piece in post_info if 'updated' in piece.text]
         if len(post.post_update)>0:
@@ -39,7 +39,6 @@ class ScrapingTools:
         else:
             post.post_update = None
 
-        post.email = self.getReplyEmailAddress()
 
         '''print('\nreply methods:',post.reply_methods.text)
         print('\ntitle:',post.title.text)
@@ -59,17 +58,17 @@ class ScrapingTools:
 
         link_elem.click()
 
-        click_wait = 3
+        click_wait = 4
         sleep(click_wait)
 
         em = self.br.find_element_by_partial_link_text('sale.craigslist.org')
         return(em.text)
 
 
-    def getCitySales(self,city):
-
+    def getLocationPosts(self,city):
+        min_price = 2
         max_price = 1000
-        city_sales_link = 'https://{}.craigslist.org/d/for-sale/search/sss?max_price={}'.format(city,max_price)
+        city_sales_link = 'https://{}.craigslist.org/d/for-sale/search/sss?min_price={}&max_price={}'.format(city,min_price,max_price)
 
         self.br.get(city_sales_link)
         load_wait = 3
@@ -85,7 +84,7 @@ class ScrapingTools:
 
     def __del__(self):
         print('closing browser via ST __del__')
-        self.debug_file.writeToDebug('closing browser via ST __del__')
+        #self.debug_file.writeToDebug('closing browser via ST __del__')
         self.br.quit()
 
 
