@@ -2,6 +2,7 @@ import smtplib
 from email.message import EmailMessage
 from email.utils import make_msgid
 import imaplib
+import email
 
 
 
@@ -38,11 +39,26 @@ class EmailTools:
 
         ids = data[0] # data is a list.
         id_list = ids.split() # ids is a space separated string
-        latest_email_id = id_list[-1] # get the latest
+        #print(id_list)
+        #latest_email_id = id_list[-1] # get the latest
+        mail_list = []
+        for id in id_list:
+            result, data = mail.fetch(id, '(RFC822)') # fetch the email body (RFC822) for the given ID
+            #print('\n\nraw email:')
+            raw_email = data[0][1] # here's the body, which is raw text of the whole email
+            #print(raw_email)
+            msg = email.message_from_bytes(raw_email)
+            mail_list.append(msg)
+            #print('keys:',msg.keys())
+            '''print('ID:',msg['Message-ID'])
+            print('in reply to:',msg['In-Reply-To'])
+            print('refs:',msg['References'])
+            print('\nparsed:')
+            print(msg.get_payload())'''
 
-        result, data = mail.fetch(latest_email_id, "(RFC822)") # fetch the email body (RFC822) for the given ID
+        mail.logout()
 
-        raw_email = data[0][1] # here's the body, which is raw text of the whole email
+        return(mail_list)
         # including headers and alternate payloads
 
 

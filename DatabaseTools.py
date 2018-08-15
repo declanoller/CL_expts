@@ -3,6 +3,11 @@ from datetime import datetime
 import subprocess
 from os import path
 import numpy as np
+from tabulate import tabulate
+import pytz
+
+
+
 
 
 class DatabaseTools:
@@ -32,7 +37,8 @@ class DatabaseTools:
         'date_rplied',
         'location',
         'msg_type',
-        'available'
+        'available',
+        'reply_email_id'
         ]
 
         #Check if CSV pandas file exists, if not, create one
@@ -51,6 +57,7 @@ class DatabaseTools:
             print('Creating backup file. Backup file name:',backup_fname)
             subprocess.check_call(['cp',self.csv_fname,self.backup_dir+'/'+backup_fname])
 
+        self.east_tz = pytz.timezone('US/Eastern')
 
 
 
@@ -75,7 +82,8 @@ class DatabaseTools:
         'date_rplied' : [np.nan],
         'location' : [location],
         'msg_type' : [msg_type],
-        'available' : [np.nan]
+        'available' : [np.nan],
+        'reply_email_id' : [np.nan]
         })
 
         self.df = self.df.append(add_df,ignore_index=True)
@@ -83,6 +91,40 @@ class DatabaseTools:
         #print('adding to df and writing to file')
         #print(self.df.head())
         self.writeCSV()
+
+
+    def updateWithReply(self,reply_email):
+
+        self.readCSV()
+        print('\n\n')
+        if reply_email['References'] is not None:
+            ref_list = reply_email['References'].split()
+            orig_ref = [id for id in ref_list if 'TITTYWHISKERS88' in id]
+            if orig_ref!=[]:
+                orig_ref = orig_ref[0]
+                print('orig ref',orig_ref)
+                #print(self.df.loc[self.df['email_id']==orig_ref].head())
+                #print(tabulate(self.df.loc[self.df['email_id']==orig_ref].head(), headers=self.df.columns.values, tablefmt='psql'))
+                dt_obj = datetime.strptime(reply_email['Date'],"%a, %d %b %Y %H:%M:%S %z").astimezone(self.east_tz)
+                dt_string = dt_obj.strftime("%Y-%m-%d_%H-%M-%S")
+                print('formatted reply dt:',dt_string)
+                print('reply email id:',reply_email['Message-ID'])
+                self.df.loc[self.df['email_id']==orig_ref,'date_rplied'] = dt_string
+                self.df.loc[self.df['email_id']==orig_ref,'replied'] = 1
+
+
+                body = reply_email.get_payload()
+                print('\n\nbody:\n')
+                print(body)
+                #Did they accept or not?
+
+
+
+
+
+                #self.df.loc[self.df['email_id']==orig_ref]['date_rplied'] =
+                #self.df.loc[self.df['email_id']==orig_ref]['date_rplied'] =
+
 
 
 

@@ -6,7 +6,7 @@ class ScrapingTools:
     def __init__(self,debug_file):
         self.debug_file = debug_file
         self.debug_file.writeToDebug('Starting FF webdriver')
-        self.br = webdriver.Firefox()
+        #self.br = webdriver.Firefox()
 
     def getPageInfo(self,page):
 

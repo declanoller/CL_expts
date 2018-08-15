@@ -70,3 +70,64 @@ class BidderSystem:
                 #format email
                 #send email
                 #enter info in database
+
+    def updateDB(self):
+
+        new_mail = self.et.getUnreadEmails()
+
+        for mail in new_mail:
+            print('\n\n')
+            print('Subject:',mail['Subject'])
+            print('in reply to:',mail['In-Reply-To'])
+            print('refs:',mail['References'])
+            print('From:',mail['From'])
+            print('To:',mail['To'])
+            print('Date:',mail['Date'])
+
+            self.db.updateWithReply(mail)
+        print('\n\n')
+
+        #Get new emails
+
+        #For each email:
+
+        #   -get msgid thing
+        #   -look up DB entry
+        #   -add response info to DB
+        #       -date replied
+        #       -counter price offer
+        #       -available
+        #       -response email ID
+        #
+        #   -email back that I'm not interested
+        #   -
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
