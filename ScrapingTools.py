@@ -5,8 +5,12 @@ class ScrapingTools:
 
     def __init__(self,debug_file):
         self.debug_file = debug_file
+        self.br = None
+
+
+    def startBrowser(self):
         self.debug_file.writeToDebug('Starting FF webdriver')
-        #self.br = webdriver.Firefox()
+        self.br = webdriver.Firefox()
 
     def getPageInfo(self,page):
 
@@ -23,6 +27,9 @@ class ScrapingTools:
             self.debug_file.writeToDebug('No email contact, setting to None.')
             post.reply_methods = None
             post.email = None
+
+        url_split = page.split('/')
+        post.post_type = url_split[url_split.index('d') - 1]
 
         post.title = self.br.find_element_by_id('titletextonly').text
         post.price = int((self.br.find_element_by_class_name('price').text).replace('$',''))
@@ -83,9 +90,10 @@ class ScrapingTools:
 
 
     def __del__(self):
-        print('closing browser via ST __del__')
-        #self.debug_file.writeToDebug('closing browser via ST __del__')
-        #self.br.quit()
+        if self.br is not None:
+            print('closing browser via ST __del__')
+            #self.debug_file.writeToDebug('closing browser via ST __del__')
+            self.br.quit()
 
 
     def getRoundPrice(self,price,percent):
@@ -117,6 +125,7 @@ class Post:
         self.post_date = None
         self.post_update = None
         self.email = None
+        self.post_type = None
 
     def printAll(self):
         print('\n\npost entries:')

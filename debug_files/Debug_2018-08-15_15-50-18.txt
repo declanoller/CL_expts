@@ -1,0 +1,4 @@
+Run notes: 
+
+
+[15:50:18   2018-08-15]	Creating backup file. Backup file name:DB_CL_2018-08-15_15-50-18_backup.csv

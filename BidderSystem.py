@@ -73,18 +73,20 @@ class BidderSystem:
 
     def updateDB(self):
 
+        send_cancel_emails = True
+
         new_mail = self.et.getUnreadEmails()
 
         for mail in new_mail:
             print('\n\n')
-            print('Subject:',mail['Subject'])
-            print('in reply to:',mail['In-Reply-To'])
-            print('refs:',mail['References'])
-            print('From:',mail['From'])
-            print('To:',mail['To'])
-            print('Date:',mail['Date'])
 
-            self.db.updateWithReply(mail)
+            accepted_or_countered = self.db.updateWithReply(mail)
+
+
+            if send_cancel_emails and accepted_or_countered:
+                pass
+                #self.et.sendCancelEmail(post)
+
         print('\n\n')
 
         #Get new emails
@@ -100,7 +102,7 @@ class BidderSystem:
         #       -response email ID
         #
         #   -email back that I'm not interested
-        #   -
+        #   -mark as read
         pass
 
 

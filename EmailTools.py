@@ -6,6 +6,7 @@ import email
 
 
 
+
 class EmailTools:
 
     def __init__(self,debug_file):
@@ -18,6 +19,8 @@ class EmailTools:
                 self.info[key] = val
                 #print(key,': ',val)
 
+    def startSMTP(self):
+        #For writing emails.
         self.port = 587
         print('starting email server and logging in...')
         self.debug_file.writeToDebug('starting email server on port {} and logging in...'.format(self.port))
@@ -35,7 +38,7 @@ class EmailTools:
         # Out: list of "folders" aka labels in gmail.
         mail.select("inbox") # connect to inbox.
 
-        result, data = mail.search(None, "ALL")
+        result, data = mail.search(None, '(UNSEEN)')
 
         ids = data[0] # data is a list.
         id_list = ids.split() # ids is a space separated string
@@ -46,24 +49,19 @@ class EmailTools:
             result, data = mail.fetch(id, '(RFC822)') # fetch the email body (RFC822) for the given ID
             #print('\n\nraw email:')
             raw_email = data[0][1] # here's the body, which is raw text of the whole email
-            #print(raw_email)
             msg = email.message_from_bytes(raw_email)
             mail_list.append(msg)
             #print('keys:',msg.keys())
-            '''print('ID:',msg['Message-ID'])
-            print('in reply to:',msg['In-Reply-To'])
-            print('refs:',msg['References'])
-            print('\nparsed:')
-            print(msg.get_payload())'''
 
         mail.logout()
 
         return(mail_list)
-        # including headers and alternate payloads
 
 
 
     def sendEmailOffer(self, post, price_offered, msg_type):
+        if self.server is None:
+            self.startSMTP()
 
         msg = self.createEmailMessage(post, price_offered, msg_type)
 
@@ -72,6 +70,19 @@ class EmailTools:
         self.debug_file.writeToDebug('sending email\n')
         self.server.send_message(msg)
         return(msg['In-Reply-To'])
+
+    def sendCancelEmail(self,post):
+        if self.server is None:
+            self.startSMTP()
+
+        msg = self.createEmailMessage(post, 0, 'cancel')
+
+        self.debug_file.writeToDebug('email to be sent:\n' + msg.as_string() + '\n\n')
+
+        self.debug_file.writeToDebug('sending email\n')
+        self.server.send_message(msg)
+        return(msg['In-Reply-To'])
+
 
 
     def createEmailMessage(self, post, price_offered, msg_type):
@@ -84,6 +95,12 @@ class EmailTools:
 
         if msg_type=='available':
             msg_file = 'is_available_message.txt'
+            with open(msg_file) as f:
+                content = f.read()
+            content_filled = content.format(post.page)
+
+        if msg_type=='cancel':
+            msg_file = 'cancel_message.txt'
             with open(msg_file) as f:
                 content = f.read()
             content_filled = content.format(post.page)
