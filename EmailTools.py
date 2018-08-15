@@ -101,30 +101,6 @@ class EmailTools:
 
 
 
-    def otherstuff(self):
-        my_id = make_msgid()
-        print('my id:',my_id)
-
-        self.server = smtplib.SMTP('smtp.gmail.com', 587)
-        self.server.starttls()
-        self.server.login(info['sender_email'], info['sender_password'])
-
-
-        content = 'email numero tres!'
-        #my_id = '<153365985111.3144.10898008056301223644@TITTYWHISKERS88>'
-        msg = EmailMessage()
-        msg["Message-ID"]  = my_id
-        msg['Subject'] = 'Testing threads'
-        msg['From'] = info['sender_email']
-        msg['To'] = info['recipient_email']
-        msg.set_content(content)
-
-        msg["In-Reply-To"] = my_id
-        msg["References"] = my_id
-
-        #self.server.sendmail(info['sender_email'], info['recipient_email'], msg)
-        self.server.send_message(msg)
-        self.server.quit()
 
 
 
