@@ -85,7 +85,7 @@ class ScrapingTools:
     def __del__(self):
         print('closing browser via ST __del__')
         #self.debug_file.writeToDebug('closing browser via ST __del__')
-        self.br.quit()
+        #self.br.quit()
 
 
     def getRoundPrice(self,price,percent):

@@ -1,0 +1,7 @@
+Run notes: 
+
+
+[14:45:42   2018-08-15]	Creating backup file. Backup file name:DB_CL_2018-08-15_14-45-42_backup.csv
+[14:45:42   2018-08-15]	starting email server on port 587 and logging in...
+[14:45:43   2018-08-15]	successful!
+[14:45:43   2018-08-15]	Starting FF webdriver
