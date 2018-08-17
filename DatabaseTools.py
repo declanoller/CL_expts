@@ -181,7 +181,7 @@ class DatabaseTools:
         p.email = self.df.loc[self.df['email_id']==ID,'email'].values[0]
         p.title = self.df.loc[self.df['email_id']==ID,'title'].values[0]
 
-        p.stuff = stuff
+        p. = self.df.loc[self.df['email_id']==ID,'email_id'].values[0]
 
 
 

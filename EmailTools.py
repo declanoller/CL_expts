@@ -77,6 +77,9 @@ class EmailTools:
 
         msg = self.createEmailMessage(post, 0, 'cancel')
 
+        msg['In-Reply-To'] = my_id
+        msg['References'] = my_id
+
         self.debug_file.writeToDebug('email to be sent:\n' + msg.as_string() + '\n\n')
 
         self.debug_file.writeToDebug('sending email\n')
