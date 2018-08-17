@@ -19,7 +19,10 @@ class ScrapingTools:
         sleep(load_wait)
 
         post = Post(page)
+        post.title = self.br.find_element_by_id('titletextonly').text
+        post.price = int((self.br.find_element_by_class_name('price').text).replace('$',''))
 
+        #Only need to do stuff if there's an email address.
         try:
             post.reply_methods = self.br.find_element_by_class_name('envelope').text
             post.email = self.getReplyEmailAddress()
@@ -27,12 +30,19 @@ class ScrapingTools:
             self.debug_file.writeToDebug('No email contact, setting to None.')
             post.reply_methods = None
             post.email = None
+            return(post)
+
+
+        try:
+            temp = self.br.find_element_by_class_name('phone').text
+            post.phone_num = self.br.getPhoneNumber()
+        except:
+            self.debug_file.writeToDebug('No phone num, setting to None.')
+            post.phone_num = None
 
         url_split = page.split('/')
         post.post_type = url_split[url_split.index('d') - 1]
 
-        post.title = self.br.find_element_by_id('titletextonly').text
-        post.price = int((self.br.find_element_by_class_name('price').text).replace('$',''))
         post_info = self.br.find_elements_by_class_name('postinginfo')
 
         post.id = [piece.text for piece in post_info if 'post id' in piece.text][0]
@@ -70,6 +80,18 @@ class ScrapingTools:
 
         em = self.br.find_element_by_partial_link_text('sale.craigslist.org')
         return(em.text)
+
+
+    def getPhoneNumber(self):
+        #This assumes the reply button has already been clicked, from the email one.
+        phone_num_els = b.find_elements_by_xpath("//*[contains(text(), '☎')]")
+
+        if len(phone_num_els)>0:
+            phone_num = phone_num_els[1].text.replace('☎','').strip()
+        else:
+            return(None)
+
+        return(phone_num)
 
 
     def getLocationPosts(self,city):
@@ -121,11 +143,14 @@ class Post:
         self.reply_methods = None
         self.title = None
         self.price = None
+        #id is the id of the post.
         self.id = None
         self.post_date = None
         self.post_update = None
         self.email = None
         self.post_type = None
+        self.phone_num = None
+        self.email_id = None
 
     def printAll(self):
         print('\n\npost entries:')

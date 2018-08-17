@@ -26,7 +26,7 @@ class BidderSystem:
 
         self.df.writeToDebug('getting posts for ' + location + ':\n' + '\n'.join(location_posts))
 
-        percents = [.6,.8,1.0]
+        percents = [.3,.5,.6,.7,.8,.9,1.0]
         self.df.writeToDebug('percents used: {}'.format(percents))
 
         #For each post:
@@ -40,36 +40,38 @@ class BidderSystem:
 
             if page_info.email is not None:
 
-                self.df.writeToDebug('post items:')
-                self.df.writeToDebug('{}\n'.format(page_info.getPostItems()))
-                percent_offered = percents[i%len(percents)]
-                price_offered = self.st.getRoundPrice(page_info.price,percent_offered)
+                if not self.db.isDuplicate(page_info):
 
-                print('offering {} percent, which is rounded to ${}\n\n'.format(100*percent_offered,price_offered))
+                    self.df.writeToDebug('post items:')
+                    self.df.writeToDebug('{}\n'.format(page_info.getPostItems()))
+                    percent_offered = percents[i%len(percents)]
+                    price_offered = self.st.getRoundPrice(page_info.price,percent_offered)
 
-                self.df.writeToDebug('offering {} percent, which is rounded to ${}\n'.format(100*percent_offered,price_offered))
+                    print('offering {} percent, which is rounded to ${}\n\n'.format(100*percent_offered,price_offered))
 
-                if abs(percent_offered - 1.0)<.01:
-                    msg_type = 'available'
+                    self.df.writeToDebug('offering {} percent, which is rounded to ${}\n'.format(100*percent_offered,price_offered))
+
+                    if abs(percent_offered - 1.0)<.01:
+                        msg_type = 'available'
+                    else:
+                        msg_type = 'polite'
+
+                    self.df.writeToDebug('Message type: ' + msg_type)
+                    email_id = self.et.sendEmailOffer(page_info, price_offered,msg_type)
+
+                    self.db.addToDatabase(page_info,email_id,percent_offered,price_offered,msg_type,location)
+
                 else:
-                    msg_type = 'polite'
-
-                self.df.writeToDebug('Message type: ' + msg_type)
-                email_id = self.et.sendEmailOffer(page_info, price_offered,msg_type)
-
-                self.db.addToDatabase(page_info,email_id,percent_offered,price_offered,msg_type,location)
+                    print('duplicate!')
+                    self.df.writeToDebug('is duplicate, skipping.')
+                    continue
 
             else:
                 print('no valid email address, skipping')
+                self.df.writeToDebug('no valid email address, skipping'.format(100*percent_offered,price_offered))
                 continue
 
 
-
-            #check if phone number (maybe other stuff?) is in database
-            #if not:
-                #format email
-                #send email
-                #enter info in database
 
     def updateDB(self):
 
@@ -80,10 +82,11 @@ class BidderSystem:
         for mail in new_mail:
             print('\n\n')
 
-            accepted_or_countered = self.db.updateWithReply(mail)
+            send_cancel = self.db.updateWithReply(mail)
 
+            if send_cancel_emails and send_cancel:
 
-            if send_cancel_emails and accepted_or_countered:
+                temp_post = self.db.getPostFromEmail(mail):
                 pass
                 #self.et.sendCancelEmail(post)
 

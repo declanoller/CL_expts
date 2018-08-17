@@ -71,14 +71,17 @@ class EmailTools:
         self.server.send_message(msg)
         return(msg['In-Reply-To'])
 
+
     def sendCancelEmail(self,post):
         if self.server is None:
             self.startSMTP()
 
         msg = self.createEmailMessage(post, 0, 'cancel')
 
-        msg['In-Reply-To'] = my_id
-        msg['References'] = my_id
+        #Need to use the same id thing as before
+        #I'm not totally sure about the difference between these two fields...
+        msg['In-Reply-To'] = post.email_id
+        msg['References'] = post.email_id
 
         self.debug_file.writeToDebug('email to be sent:\n' + msg.as_string() + '\n\n')
 
