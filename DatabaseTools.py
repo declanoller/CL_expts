@@ -90,7 +90,7 @@ class DatabaseTools:
         'reply_email_id' : [np.nan],
         'counter_offer' : [np.nan],
         'notes' : [np.nan],
-        'phone_num' : [np.nan]
+        'phone_num' : [post.phone_num]
         })
 
         self.df = self.df.append(add_df,ignore_index=True)

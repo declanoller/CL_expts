@@ -6,25 +6,14 @@ from BidderSystem import BidderSystem
 
 
 
-location = 'lasvegas'
+location = 'denver'
 
-bs = BidderSystem(location + ' test')
+bs = BidderSystem(location + '_test')
 
-
-bs.processBatch(location)
-
-
-
-
-
-
+bs.processBatch(location,send_emails=False)
 
 
 exit(0)
-
-#post = bs.st.getPageInfo('https://providence.craigslist.org/rvs/d/1999-winnebago-adventurer-35/6665084568.html')
-#print(post.reply_methods)
-
 
 
 

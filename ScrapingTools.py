@@ -10,12 +10,13 @@ class ScrapingTools:
 
     def startBrowser(self):
         self.debug_file.writeToDebug('Starting FF webdriver')
+        print('starting FF driver')
         self.br = webdriver.Firefox()
 
     def getPageInfo(self,page):
 
         self.br.get(page)
-        load_wait = 2
+        load_wait = 4
         sleep(load_wait)
 
         post = Post(page)
@@ -94,9 +95,11 @@ class ScrapingTools:
         return(phone_num)
 
 
-    def getLocationPosts(self,city):
-        min_price = 2
-        max_price = 1000
+    def getLocationPosts(self,city,min_price = 2,max_price = 1000):
+
+        if self.br is None:
+            self.startBrowser()
+
         city_sales_link = 'https://{}.craigslist.org/d/for-sale/search/sss?min_price={}&max_price={}'.format(city,min_price,max_price)
 
         self.br.get(city_sales_link)
@@ -104,9 +107,6 @@ class ScrapingTools:
         sleep(load_wait)
 
         sale_items = self.br.find_elements_by_class_name('result-title.hdrlnk')
-        #print('\nsale_items:')
-        #[print(piece.text,'\t',piece.get_attribute('href')) for piece in sale_items[:20]]
-        #print('len:',len(sale_items))
 
         return([piece.get_attribute('href') for piece in sale_items])
 
